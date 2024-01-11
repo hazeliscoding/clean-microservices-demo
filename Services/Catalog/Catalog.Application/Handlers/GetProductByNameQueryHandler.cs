@@ -9,8 +9,6 @@ namespace Catalog.Application.Handlers;
 public class GetProductByNameQueryHandler(IProductRepository productRepository)
     : IRequestHandler<GetProductByNameQuery, IList<ProductResponse>>
 {
-    private readonly IProductRepository _productRepository = productRepository;
-
     public async Task<IList<ProductResponse>> Handle(GetProductByNameQuery request, CancellationToken cancellationToken)
     {
         var productList = await productRepository.GetProduct(request.Name);
