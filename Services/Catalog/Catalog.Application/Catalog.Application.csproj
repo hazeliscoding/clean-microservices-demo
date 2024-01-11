@@ -17,9 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Handlers\" />
     <Folder Include="Responses\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
 </Project>
