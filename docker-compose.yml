@@ -5,7 +5,7 @@ services:
     image: mongo
    
   basketdb:
-    image: redis_alpine
+    image: redis:alpine
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
