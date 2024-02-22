@@ -12,9 +12,12 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Mapper\" />
     <Folder Include="Handlers\" />
     <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos/discount.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>
