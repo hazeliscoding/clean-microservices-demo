@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Discount.API.Services;
 using Discount.Application.Handlers;
 using Discount.Core.Repositories;
 using Discount.Infrastructure.Repositories;
@@ -27,7 +28,7 @@ public class Startup
         app.UseRouting();
         app.UseEndpoints(endpoints =>
         {
-            // endpoints.MapGrpcService<DiscountService>(); TODO
+            endpoints.MapGrpcService<DiscountService>();
             endpoints.MapGet("/", async context =>
             {
                 await context.Response.WriteAsync(
