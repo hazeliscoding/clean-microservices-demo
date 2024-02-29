@@ -25,12 +25,6 @@ public class BasketController(IMediator mediator, DiscountGrpcService discountGr
     [ProducesResponseType(typeof(ShoppingCartResponse), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCartResponse>> UpdateBasket([FromBody] CreateShoppingCartCommand createShoppingCartCommand)
     {
-        foreach (var item in createShoppingCartCommand.Items)
-        {
-            var coupon = await discountGrpcService.GetDiscount(item.ProductName);
-            item.Price -= coupon.Amount;
-        }
-
         var basket = await mediator.Send(createShoppingCartCommand);
         return Ok(basket);
     }

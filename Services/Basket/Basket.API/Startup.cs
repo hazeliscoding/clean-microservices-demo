@@ -30,6 +30,8 @@ public class Startup(IConfiguration configuration)
         services.AddScoped<IBasketRepository, BasketRepository>();
         services.AddAutoMapper(typeof(Startup));
         services.AddScoped<DiscountGrpcService>();
+        services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(o =>
+            o.Address = new Uri(Configuration["GrpcSettings:DiscountUrl"]!));
         services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" }); });
         services.AddHealthChecks()
             .AddRedis(Configuration["CacheSettings:ConnectionString"]!, "Redis Health", HealthStatus.Degraded);
