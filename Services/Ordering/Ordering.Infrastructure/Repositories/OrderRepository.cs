@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordering.Core.Entities;
+using Ordering.Core.Repositories;
 using Ordering.Infrastructure.Data;
 
 namespace Ordering.Infrastructure.Repositories;
 
-public class OrderRepository(OrderContext dbContext) : RepositoryBase<Order>(dbContext)
+public class OrderRepository(OrderContext dbContext) : RepositoryBase<Order>(dbContext), IOrderRepository
 {
     private readonly OrderContext _dbContext = dbContext;
 
