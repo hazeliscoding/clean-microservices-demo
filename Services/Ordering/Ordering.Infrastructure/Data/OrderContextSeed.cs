@@ -36,7 +36,7 @@ public class OrderContextSeed
                 Cvv = "123",
                 PaymentMethod = 1
             },
-            new Order
+            new()
             {
                 UserName = "JaneSmith",
                 TotalPrice = 200.00m,
