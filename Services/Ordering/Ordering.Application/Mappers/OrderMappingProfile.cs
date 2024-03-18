@@ -11,5 +11,6 @@ public class OrderMappingProfile : Profile
     {
         CreateMap<Order, OrderResponse>().ReverseMap();
         CreateMap<Order, CheckoutOrderCommand>().ReverseMap();
+        CreateMap<Order, UpdateOrderCommand>().ReverseMap();
     }
 }
