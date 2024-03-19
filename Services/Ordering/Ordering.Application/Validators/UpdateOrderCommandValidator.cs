@@ -1,6 +1,9 @@
-﻿namespace Ordering.Application.Validators;
+﻿using FluentValidation;
+using Ordering.Application.Commands;
 
-public class UpdateOrderCommandValidator
+namespace Ordering.Application.Validators;
+
+public class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
 {
     public UpdateOrderCommandValidator()
     {
