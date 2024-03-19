@@ -11,7 +11,7 @@ public class OrderContextSeed
         {
             orderContext.Orders.AddRange(GetOrders());
             await orderContext.SaveChangesAsync();
-            logger.LogInformation($"Ordering Database seeded: {nameof(OrderContext)}");
+            logger.LogInformation($"Ordering Database: {nameof(OrderContext)} seeded");
         }
     }
 
