@@ -1,7 +1,9 @@
-﻿using HealthChecks.UI.Client;
+﻿using System.Reflection;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Ordering.Application.Extensions;
+using Ordering.Application.Handlers;
 using Ordering.Infrastructure.Data;
 using Ordering.Infrastructure.Extensions;
 
@@ -14,6 +16,7 @@ public class Startup(IConfiguration configuration)
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers();
+        services.AddApiVersioning();
         services.AddApplicationServices();
         services.AddInfrastructureServices(Configuration);
         services.AddAutoMapper(typeof(Startup));

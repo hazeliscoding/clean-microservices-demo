@@ -13,7 +13,7 @@ public static class AddInfraServices
         IConfiguration configuration)
     {
         services.AddDbContext<OrderContext>(c =>
-            c.UseSqlServer(configuration.GetConnectionString("OrderConnection"),
+            c.UseSqlServer(configuration.GetConnectionString("OrderingConnectionString"),
                 sqlServerOptionsAction: sqlOptions =>
                 {
                     sqlOptions.EnableRetryOnFailure(
