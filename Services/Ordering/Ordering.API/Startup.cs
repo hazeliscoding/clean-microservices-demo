@@ -30,14 +30,15 @@ public class Startup(IConfiguration configuration)
         services.AddMassTransit(config =>
         {
             // Mark this as consumer
-            config.AddConsumer<BasketCheckoutConsumer>();
+            config.AddConsumer<BasketOrderingConsumer>();
             config.UsingRabbitMq((ctx, cfg) =>
             {
                 cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                
                 // Provide the queue name with consumer settings
                 cfg.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue, c =>
                 {
-                    c.ConfigureConsumer<BasketCheckoutConsumer>(ctx);
+                    c.ConfigureConsumer<BasketOrderingConsumer>(ctx);
                 });
             });
         });
