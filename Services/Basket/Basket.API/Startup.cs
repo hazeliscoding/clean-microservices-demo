@@ -5,6 +5,7 @@ using Basket.Core.Repositories;
 using Basket.Infrastructure.Repositories;
 using Discount.Grpc.Protos;
 using HealthChecks.UI.Client;
+using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
@@ -35,6 +36,16 @@ public class Startup(IConfiguration configuration)
         services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" }); });
         services.AddHealthChecks()
             .AddRedis(Configuration["CacheSettings:ConnectionString"]!, "Redis Health", HealthStatus.Degraded);
+
+        services.AddMassTransit(config =>
+        {
+            config.UsingRabbitMq((ctx, cfg) =>
+            {
+                cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+            });
+        });
+        
+        services.AddMassTransitHostedService();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
