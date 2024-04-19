@@ -29,6 +29,17 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     new TestUser
                     {
+                        SubjectId = "00706d6b-4a09-43df-a762-eee7d03ef12b",
+                        Username = "hazel",
+                        Password = "hazel",
+                        Claims = new List<Claim>
+                        {
+                            new Claim(JwtClaimTypes.GivenName, "Hazel"),
+                            new Claim(JwtClaimTypes.FamilyName, "Loveless")
+                        }
+                    },
+                    new TestUser
+                    {
                         SubjectId = "818727",
                         Username = "alice",
                         Password = "alice",
