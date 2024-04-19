@@ -4,6 +4,7 @@ using Catalog.Core.Repositories;
 using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
 using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
@@ -36,6 +37,14 @@ public class Startup
         services.AddScoped<ITypesRepository, ProductRepository>();
 
         services.AddControllers();
+
+        // Identity Server Changes
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.Authority = "https:localhost:9009";
+                options.Audience = "Catalog";
+            });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
