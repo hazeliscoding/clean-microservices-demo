@@ -16,5 +16,8 @@ public class Program
             .ConfigureAppConfiguration((env, config) =>
             {
                 config.AddJsonFile($"ocelot.{env.HostingEnvironment.EnvironmentName}.json", true);
+            }).ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
             });
 }
