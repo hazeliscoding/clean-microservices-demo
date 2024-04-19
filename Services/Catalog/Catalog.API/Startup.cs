@@ -5,7 +5,9 @@ using Catalog.Infrastructure.Data;
 using Catalog.Infrastructure.Repositories;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
@@ -36,9 +38,16 @@ public class Startup
         services.AddScoped<IBrandRepository, ProductRepository>();
         services.AddScoped<ITypesRepository, ProductRepository>();
 
-        services.AddControllers();
-
         // Identity Server Changes
+        var userPolicy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+
+        services.AddControllers(config =>
+        {
+            config.Filters.Add(new AuthorizeFilter(userPolicy));
+        });
+
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
