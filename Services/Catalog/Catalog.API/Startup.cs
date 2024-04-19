@@ -42,7 +42,7 @@ public class Startup
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
-                options.Authority = "https:localhost:9009";
+                options.Authority = "https://localhost:9009";
                 options.Audience = "Catalog";
             });
     }
