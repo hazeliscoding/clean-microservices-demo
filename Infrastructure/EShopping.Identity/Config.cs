@@ -23,6 +23,12 @@ namespace EShopping.Identity
                 new ApiScope("scope2"),
             };
 
+        public static IEnumerable<ApiResource> ApiResources =>
+            new ApiResource[]
+            {
+                // List of Microservices can go here.
+            };
+
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
